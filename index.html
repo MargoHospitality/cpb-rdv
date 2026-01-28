@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RDV CPB - Mathilde 🤓</title>
+    <title>Rendez-vous Parents - CPB</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
         
         * {
             margin: 0;
@@ -14,11 +14,12 @@
         }
         
         body {
-            font-family: 'Space Grotesk', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f8f9fa;
             min-height: 100vh;
             padding: 20px;
-            color: #333;
+            color: #2c3e50;
+            line-height: 1.6;
         }
         
         .container {
@@ -28,148 +29,109 @@
         
         header {
             text-align: center;
-            color: white;
             margin-bottom: 40px;
-            animation: fadeInDown 0.6s ease;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         
         h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1a1a1a;
         }
         
         .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.95;
+            font-size: 0.95rem;
+            color: #6c757d;
             font-weight: 400;
-        }
-        
-        .emoji {
-            font-size: 3rem;
-            display: inline-block;
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
         
         .day-section {
             background: white;
-            border-radius: 20px;
+            border-radius: 8px;
             padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            animation: fadeInUp 0.6s ease;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         
         .day-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #667eea;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
             margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .day-icon {
-            font-size: 1.8rem;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e9ecef;
         }
         
         .slots-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
         }
         
         .slot {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 12px;
-            padding: 15px;
-            transition: all 0.3s ease;
+            background: #f8f9fa;
+            border: 1.5px solid #dee2e6;
+            border-radius: 6px;
+            padding: 14px;
+            transition: all 0.2s ease;
             cursor: pointer;
-            border: 2px solid transparent;
         }
         
         .slot:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
-            border-color: #667eea;
+            border-color: #495057;
+            background: #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
         
         .slot.reserved {
-            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
-            cursor: pointer;
+            background: #fff3cd;
+            border-color: #ffc107;
         }
         
         .slot.reserved:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(253, 203, 110, 0.4);
-            border-color: #fdcb6e;
+            border-color: #e0a800;
         }
         
         .slot-time {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #2d3436;
-            margin-bottom: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
         }
         
         .slot-location {
-            font-size: 0.9rem;
-            color: #636e72;
+            font-size: 0.85rem;
+            color: #6c757d;
             margin-bottom: 8px;
         }
         
         .slot-status {
-            font-size: 0.85rem;
-            font-weight: 600;
-            padding: 5px 10px;
-            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 4px 8px;
+            border-radius: 4px;
             display: inline-block;
         }
         
         .slot-status.available {
-            background: #55efc4;
-            color: #00b894;
+            background: #d4edda;
+            color: #155724;
         }
         
         .slot-status.reserved {
-            background: #fab1a0;
-            color: #e17055;
+            background: #fff3cd;
+            color: #856404;
         }
         
         .reserved-name {
-            font-size: 0.85rem;
-            color: #2d3436;
-            margin-top: 5px;
-            font-weight: 600;
+            font-size: 0.8rem;
+            color: #495057;
+            margin-top: 6px;
+            font-weight: 500;
         }
         
         /* Modal */
@@ -181,148 +143,142 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(5px);
+            background: rgba(0,0,0,0.5);
         }
         
         .modal.show {
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
         
         .modal-content {
             background: white;
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 500px;
+            border-radius: 8px;
+            padding: 30px;
+            max-width: 480px;
             width: 90%;
-            animation: slideIn 0.3s ease;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-        
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
         
         .modal-header {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #667eea;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a1a1a;
             margin-bottom: 20px;
         }
         
         .modal-info {
-            background: #f5f7fa;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 25px;
+            background: #f8f9fa;
+            padding: 16px;
+            border-radius: 6px;
+            margin-bottom: 24px;
+            border-left: 3px solid #495057;
         }
         
         .modal-info p {
-            margin: 5px 0;
-            color: #2d3436;
+            margin: 6px 0;
+            color: #495057;
+            font-size: 0.9rem;
         }
         
         .modal-info strong {
-            color: #667eea;
+            color: #1a1a1a;
+            font-weight: 600;
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
         
         label {
             display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #2d3436;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: #495057;
+            font-size: 0.9rem;
         }
         
         input {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #dfe6e9;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-family: 'Space Grotesk', sans-serif;
-            transition: border-color 0.3s;
+            padding: 10px 12px;
+            border: 1.5px solid #ced4da;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s;
         }
         
         input:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #495057;
         }
         
         .button-group {
             display: flex;
-            gap: 15px;
-            margin-top: 30px;
+            gap: 12px;
+            margin-top: 24px;
         }
         
         button {
             flex: 1;
-            padding: 15px;
+            padding: 12px;
             border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            font-family: 'Space Grotesk', sans-serif;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
         }
         
         .btn-confirm {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #28a745;
             color: white;
         }
         
         .btn-confirm:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+            background: #218838;
         }
         
         .btn-cancel {
-            background: #dfe6e9;
-            color: #636e72;
+            background: #e9ecef;
+            color: #495057;
         }
         
         .btn-cancel:hover {
-            background: #b2bec3;
+            background: #dee2e6;
+        }
+        
+        #delete-btn {
+            background: #dc3545;
+            color: white;
+        }
+        
+        #delete-btn:hover {
+            background: #c82333;
         }
         
         .loading {
             text-align: center;
             padding: 40px;
-            color: white;
-            font-size: 1.2rem;
+            color: #6c757d;
+            font-size: 1rem;
         }
         
         .error {
-            background: #ff7675;
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
+            background: #f8d7da;
+            color: #721c24;
+            padding: 14px;
+            border-radius: 6px;
             margin-bottom: 20px;
             text-align: center;
+            border: 1px solid #f5c6cb;
         }
         
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            .subtitle { font-size: 1rem; }
+            h1 { font-size: 1.5rem; }
+            .subtitle { font-size: 0.85rem; }
             .slots-grid {
                 grid-template-columns: 1fr;
             }
@@ -332,9 +288,8 @@
 <body>
     <div class="container">
         <header>
-            <div class="emoji">🤓</div>
-            <h1>Rendez-vous avec Mathilde</h1>
-            <p class="subtitle">CPB • Février 2026 • Entretiens parents-professeur</p>
+            <h1>Rendez-vous Parents - Professeur</h1>
+            <p class="subtitle">Classe CPB • Mathilde • Février 2026</p>
         </header>
         
         <div id="error-message" class="error" style="display: none;"></div>
@@ -344,7 +299,7 @@
     <!-- Modal -->
     <div id="modal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">📝 Réserver ce créneau</div>
+            <div class="modal-header">Réserver ce créneau</div>
             <div class="modal-info">
                 <p><strong>Jour :</strong> <span id="modal-day"></span></p>
                 <p><strong>Date :</strong> <span id="modal-date"></span></p>
@@ -362,7 +317,7 @@
                 </div>
                 <div class="button-group" id="button-group">
                     <button type="button" class="btn-cancel" onclick="closeModal()">Fermer</button>
-                    <button type="button" id="delete-btn" class="btn-cancel" onclick="deleteReservation()" style="display:none; background:#ff7675; color:white;">Annuler réservation</button>
+                    <button type="button" id="delete-btn" class="btn-cancel" onclick="deleteReservation()" style="display:none;">Annuler réservation</button>
                     <button type="submit" class="btn-confirm">Confirmer</button>
                 </div>
             </form>
@@ -372,15 +327,6 @@
     <script>
         let currentSlotId = null;
         let slots = [];
-        
-        // Day icons
-        const dayIcons = {
-            'LUNDI': '📅',
-            'MARDI': '📘',
-            'MERCREDI': '📗',
-            'JEUDI': '📙',
-            'VENDREDI': '📕'
-        };
         
         // Load slots
         async function loadSlots() {
@@ -409,10 +355,7 @@
             for (const [day, daySlots] of Object.entries(byDay)) {
                 html += `
                     <div class="day-section">
-                        <div class="day-title">
-                            <span class="day-icon">${dayIcons[day] || '📌'}</span>
-                            <span>${day} ${daySlots[0].date}</span>
-                        </div>
+                        <div class="day-title">${day} ${daySlots[0].date}</div>
                         <div class="slots-grid">
                 `;
                 
@@ -422,9 +365,9 @@
                         <div class="slot ${isReserved ? 'reserved' : ''}" 
                              onclick="openModal(${slot.id})">
                             <div class="slot-time">${slot.heure}</div>
-                            <div class="slot-location">📍 ${slot.lieu}</div>
+                            <div class="slot-location">${slot.lieu}</div>
                             <div class="slot-status ${isReserved ? 'reserved' : 'available'}">
-                                ${isReserved ? '✓ Réservé' : '✓ Disponible'}
+                                ${isReserved ? 'Réservé' : 'Disponible'}
                             </div>
                             ${isReserved ? `<div class="reserved-name">${slot.nom}</div>` : ''}
                         </div>
@@ -456,16 +399,22 @@
                 
                 document.getElementById('child-name').value = childName;
                 document.getElementById('parent-name').value = parentName;
-                document.querySelector('.modal-header').textContent = '✏️ Modifier ou annuler ce créneau';
+                document.querySelector('.modal-header').textContent = 'Modifier ce créneau';
                 deleteBtn.style.display = 'block';
             } else {
                 document.getElementById('child-name').value = '';
                 document.getElementById('parent-name').value = '';
-                document.querySelector('.modal-header').textContent = '📝 Réserver ce créneau';
+                document.querySelector('.modal-header').textContent = 'Réserver ce créneau';
                 deleteBtn.style.display = 'none';
             }
             
             document.getElementById('modal').classList.add('show');
+        }
+        
+        // Close modal
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+            currentSlotId = null;
         }
         
         // Delete reservation
@@ -489,12 +438,6 @@
             } catch (error) {
                 showError(error.message);
             }
-        }
-        
-        // Close modal
-        function closeModal() {
-            document.getElementById('modal').classList.remove('show');
-            currentSlotId = null;
         }
         
         // Handle form submit
@@ -556,4 +499,3 @@
     </script>
 </body>
 </html>
-    
