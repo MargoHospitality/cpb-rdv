@@ -1,0 +1,17 @@
+{
+  "install": {
+    "include": [
+      "^.env$"
+    ]
+  },
+  "restart": {
+    "exclude": [
+      "^slots\\.json$"
+    ],
+    "include": [
+      "\\.py$",
+      "^start\\.sh$"
+    ]
+  },
+  "throttle": 100
+}

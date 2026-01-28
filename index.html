@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDV CPB - Mathilde 🤓</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            animation: fadeInDown 0.6s ease;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+        
+        .emoji {
+            font-size: 3rem;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .day-section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            animation: fadeInUp 0.6s ease;
+        }
+        
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .day-icon {
+            font-size: 1.8rem;
+        }
+        
+        .slots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .slot {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 12px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .slot:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+        }
+        
+        .slot.reserved {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            cursor: pointer;
+        }
+        
+        .slot.reserved:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(253, 203, 110, 0.4);
+            border-color: #fdcb6e;
+        }
+        
+        .slot-time {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2d3436;
+            margin-bottom: 5px;
+        }
+        
+        .slot-location {
+            font-size: 0.9rem;
+            color: #636e72;
+            margin-bottom: 8px;
+        }
+        
+        .slot-status {
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        
+        .slot-status.available {
+            background: #55efc4;
+            color: #00b894;
+        }
+        
+        .slot-status.reserved {
+            background: #fab1a0;
+            color: #e17055;
+        }
+        
+        .reserved-name {
+            font-size: 0.85rem;
+            color: #2d3436;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .modal-header {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .modal-info {
+            background: #f5f7fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .modal-info p {
+            margin: 5px 0;
+            color: #2d3436;
+        }
+        
+        .modal-info strong {
+            color: #667eea;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2d3436;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #dfe6e9;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-confirm {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-confirm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-cancel {
+            background: #dfe6e9;
+            color: #636e72;
+        }
+        
+        .btn-cancel:hover {
+            background: #b2bec3;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .error {
+            background: #ff7675;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .subtitle { font-size: 1rem; }
+            .slots-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="emoji">🤓</div>
+            <h1>Rendez-vous avec Mathilde</h1>
+            <p class="subtitle">CPB • Février 2026 • Entretiens parents-professeur</p>
+        </header>
+        
+        <div id="error-message" class="error" style="display: none;"></div>
+        <div id="content"></div>
+    </div>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">📝 Réserver ce créneau</div>
+            <div class="modal-info">
+                <p><strong>Jour :</strong> <span id="modal-day"></span></p>
+                <p><strong>Date :</strong> <span id="modal-date"></span></p>
+                <p><strong>Heure :</strong> <span id="modal-time"></span></p>
+                <p><strong>Lieu :</strong> <span id="modal-location"></span></p>
+            </div>
+            <form id="reservation-form">
+                <div class="form-group">
+                    <label for="child-name">Nom de l'enfant *</label>
+                    <input type="text" id="child-name" required placeholder="Ex: Lucas Dupont">
+                </div>
+                <div class="form-group">
+                    <label for="parent-name">Nom du parent (optionnel)</label>
+                    <input type="text" id="parent-name" placeholder="Ex: Marie Dupont">
+                </div>
+                <div class="button-group" id="button-group">
+                    <button type="button" class="btn-cancel" onclick="closeModal()">Fermer</button>
+                    <button type="button" id="delete-btn" class="btn-cancel" onclick="deleteReservation()" style="display:none; background:#ff7675; color:white;">Annuler réservation</button>
+                    <button type="submit" class="btn-confirm">Confirmer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        let currentSlotId = null;
+        let slots = [];
+        
+        // Day icons
+        const dayIcons = {
+            'LUNDI': '📅',
+            'MARDI': '📘',
+            'MERCREDI': '📗',
+            'JEUDI': '📙',
+            'VENDREDI': '📕'
+        };
+        
+        // Load slots
+        async function loadSlots() {
+            try {
+                const response = await fetch('/api/slots');
+                if (!response.ok) throw new Error('Erreur de chargement');
+                slots = await response.json();
+                renderSlots();
+            } catch (error) {
+                showError('Impossible de charger les créneaux. Rechargez la page.');
+            }
+        }
+        
+        // Render slots
+        function renderSlots() {
+            const content = document.getElementById('content');
+            
+            // Group by day
+            const byDay = {};
+            slots.forEach(slot => {
+                if (!byDay[slot.day]) byDay[slot.day] = [];
+                byDay[slot.day].push(slot);
+            });
+            
+            let html = '';
+            for (const [day, daySlots] of Object.entries(byDay)) {
+                html += `
+                    <div class="day-section">
+                        <div class="day-title">
+                            <span class="day-icon">${dayIcons[day] || '📌'}</span>
+                            <span>${day} ${daySlots[0].date}</span>
+                        </div>
+                        <div class="slots-grid">
+                `;
+                
+                daySlots.forEach(slot => {
+                    const isReserved = slot.reserved;
+                    html += `
+                        <div class="slot ${isReserved ? 'reserved' : ''}" 
+                             onclick="openModal(${slot.id})">
+                            <div class="slot-time">${slot.heure}</div>
+                            <div class="slot-location">📍 ${slot.lieu}</div>
+                            <div class="slot-status ${isReserved ? 'reserved' : 'available'}">
+                                ${isReserved ? '✓ Réservé' : '✓ Disponible'}
+                            </div>
+                            ${isReserved ? `<div class="reserved-name">${slot.nom}</div>` : ''}
+                        </div>
+                    `;
+                });
+                
+                html += '</div></div>';
+            }
+            
+            content.innerHTML = html;
+        }
+        
+        // Open modal
+        function openModal(slotId) {
+            currentSlotId = slotId;
+            const slot = slots.find(s => s.id === slotId);
+            
+            document.getElementById('modal-day').textContent = slot.day;
+            document.getElementById('modal-date').textContent = slot.date;
+            document.getElementById('modal-time').textContent = slot.heure;
+            document.getElementById('modal-location').textContent = slot.lieu;
+            
+            // Pre-fill if reserved
+            const deleteBtn = document.getElementById('delete-btn');
+            if (slot.reserved) {
+                const nameParts = slot.nom.split('(');
+                const childName = nameParts[0].trim();
+                const parentName = nameParts[1] ? nameParts[1].replace(')', '').trim() : '';
+                
+                document.getElementById('child-name').value = childName;
+                document.getElementById('parent-name').value = parentName;
+                document.querySelector('.modal-header').textContent = '✏️ Modifier ou annuler ce créneau';
+                deleteBtn.style.display = 'block';
+            } else {
+                document.getElementById('child-name').value = '';
+                document.getElementById('parent-name').value = '';
+                document.querySelector('.modal-header').textContent = '📝 Réserver ce créneau';
+                deleteBtn.style.display = 'none';
+            }
+            
+            document.getElementById('modal').classList.add('show');
+        }
+        
+        // Delete reservation
+        async function deleteReservation() {
+            if (!confirm('Annuler cette réservation ?')) return;
+            
+            try {
+                const response = await fetch('/api/cancel', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ slotId: currentSlotId })
+                });
+                
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error || 'Erreur d\'annulation');
+                }
+                
+                closeModal();
+                await loadSlots();
+            } catch (error) {
+                showError(error.message);
+            }
+        }
+        
+        // Close modal
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+            currentSlotId = null;
+        }
+        
+        // Handle form submit
+        document.getElementById('reservation-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const childName = document.getElementById('child-name').value.trim();
+            const parentName = document.getElementById('parent-name').value.trim();
+            
+            if (!childName) {
+                alert('Le nom de l\'enfant est requis');
+                return;
+            }
+            
+            const fullName = parentName ? `${childName} (${parentName})` : childName;
+            
+            try {
+                const response = await fetch('/api/reserve', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        slotId: currentSlotId,
+                        name: fullName
+                    })
+                });
+                
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error || 'Erreur de réservation');
+                }
+                
+                closeModal();
+                await loadSlots();
+            } catch (error) {
+                showError(error.message);
+            }
+        });
+        
+        // Show error
+        function showError(message) {
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Close modal on outside click
+        document.getElementById('modal').addEventListener('click', (e) => {
+            if (e.target.id === 'modal') closeModal();
+        });
+        
+        // Initial load
+        loadSlots();
+        
+        // Refresh every 30 seconds
+        setInterval(loadSlots, 30000);
+    </script>
+</body>
+</html>
+    

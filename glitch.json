@@ -1,0 +1,9 @@
+{
+  "install": "echo 'No dependencies needed'",
+  "start": "python3 server_simple.py",
+  "watch": {
+    "ignore": [
+      "slots.json"
+    ]
+  }
+}

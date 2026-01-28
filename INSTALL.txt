@@ -1,0 +1,82 @@
+════════════════════════════════════════════════════════════════
+  🤓 MINISITE RDV CPB - MATHILDE
+  Installation et démarrage
+════════════════════════════════════════════════════════════════
+
+📋 PRÉREQUIS
+────────────
+• Python 3 (installé sur la plupart des ordinateurs)
+• Connexion internet (pour installer Flask)
+
+🚀 DÉMARRAGE RAPIDE
+────────────────────
+
+1. Extraire l'archive ZIP dans un dossier
+
+2. Ouvrir un terminal dans le dossier
+
+3. Installer Flask (première fois seulement):
+   pip3 install flask --user
+
+4. Lancer le serveur:
+   ./start.sh          (Linux/Mac)
+   python3 server.py   (Windows)
+
+5. Ouvrir le navigateur:
+   http://localhost:5000
+
+6. Partager l'adresse réseau local aux parents:
+   http://[VOTRE-IP]:5000
+   (l'IP s'affiche au démarrage du serveur)
+
+💡 TROUVER L'ADRESSE IP
+────────────────────────
+• Mac/Linux: ifconfig | grep "inet "
+• Windows: ipconfig
+• Chercher l'adresse du type: 192.168.x.x
+
+📊 GESTION
+──────────
+
+Voir les réservations:
+  python3 cancel.py list
+
+Annuler une réservation:
+  python3 cancel.py <ID>
+
+Exporter en CSV:
+  python3 export.py
+
+Exporter tout (dispo + réservé):
+  python3 export.py all
+
+🔧 DÉPANNAGE
+─────────────
+
+"flask not found"
+  → pip3 install flask --user
+
+"port 5000 déjà utilisé"
+  → Modifier server.py, ligne: app.run(port=5001)
+
+Le site ne charge pas
+  → Vérifier que server.py est lancé
+  → Vérifier l'adresse IP
+
+Les réservations ne s'enregistrent pas
+  → Vérifier les permissions sur slots.json
+  → chmod 666 slots.json
+
+📱 HÉBERGEMENT EN LIGNE (optionnel)
+────────────────────────────────────
+
+Pour rendre le site accessible de partout (pas juste réseau local):
+
+• Glitch.com (gratuit, simple)
+• PythonAnywhere.com (gratuit)
+• Replit.com (gratuit)
+• Serveur web (Baptiste peut aider)
+
+═══════════════════════════════════════════════════════════════
+Questions ? Baptiste ou Margo peuvent aider 🏨
+═══════════════════════════════════════════════════════════════
