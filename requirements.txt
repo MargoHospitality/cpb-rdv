@@ -1,1 +1,1 @@
-Flask>=2.0.0
+# Pas de dépendances (serveur HTTP natif)

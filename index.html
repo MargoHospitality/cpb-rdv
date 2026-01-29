@@ -419,13 +419,23 @@
         
         // Delete reservation
         async function deleteReservation() {
-            if (!confirm('Annuler cette réservation ?')) return;
+            const pin = prompt('Code PIN de réservation (4 chiffres) :');
+            
+            if (!pin) return;
+            
+            if (!/^\d{4}$/.test(pin)) {
+                alert('Le code PIN doit être composé de 4 chiffres');
+                return;
+            }
             
             try {
                 const response = await fetch('/api/cancel', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ slotId: currentSlotId })
+                    body: JSON.stringify({ 
+                        slotId: currentSlotId,
+                        pin: pin
+                    })
                 });
                 
                 if (!response.ok) {
@@ -433,6 +443,7 @@
                     throw new Error(error.error || 'Erreur d\'annulation');
                 }
                 
+                alert('✓ Réservation annulée avec succès');
                 closeModal();
                 await loadSlots();
             } catch (error) {
@@ -467,6 +478,23 @@
                 if (!response.ok) {
                     const error = await response.json();
                     throw new Error(error.error || 'Erreur de réservation');
+                }
+                
+                const result = await response.json();
+                const slot = slots.find(s => s.id === currentSlotId);
+                const isModification = slot && slot.reserved;
+                
+                // Show success message with PIN
+                if (result.pin && !isModification) {
+                    alert(
+                        '✓ Réservation confirmée !\n\n' +
+                        'Créneau : ' + slot.day + ' ' + slot.date + ' à ' + slot.heure + '\n' +
+                        'Enfant : ' + childName + '\n\n' +
+                        '🔑 Votre code PIN : ' + result.pin + '\n\n' +
+                        'Conservez ce code pour modifier ou annuler votre réservation.'
+                    );
+                } else if (isModification) {
+                    alert('✓ Réservation modifiée avec succès');
                 }
                 
                 closeModal();
