@@ -20,510 +20,88 @@
             padding: 20px;
             color: #2c3e50;
             line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 30px 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-        
-        h1 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #1a1a1a;
-        }
-        
-        .subtitle {
-            font-size: 0.95rem;
-            color: #6c757d;
-            font-weight: 400;
-        }
-        
-        .day-section {
-            background: white;
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-        
-        .day-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid #e9ecef;
-        }
-        
-        .slots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 12px;
-        }
-        
-        .slot {
-            background: #f8f9fa;
-            border: 1.5px solid #dee2e6;
-            border-radius: 6px;
-            padding: 14px;
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-        
-        .slot:hover {
-            border-color: #495057;
-            background: #fff;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
-        
-        .slot.reserved {
-            background: #fff3cd;
-            border-color: #ffc107;
-        }
-        
-        .slot.reserved:hover {
-            border-color: #e0a800;
-        }
-        
-        .slot-time {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 6px;
-        }
-        
-        .slot-location {
-            font-size: 0.85rem;
-            color: #6c757d;
-            margin-bottom: 8px;
-        }
-        
-        .slot-status {
-            font-size: 0.8rem;
-            font-weight: 500;
-            padding: 4px 8px;
-            border-radius: 4px;
-            display: inline-block;
-        }
-        
-        .slot-status.available {
-            background: #d4edda;
-            color: #155724;
-        }
-        
-        .slot-status.reserved {
-            background: #fff3cd;
-            color: #856404;
-        }
-        
-        .reserved-name {
-            font-size: 0.8rem;
-            color: #495057;
-            margin-top: 6px;
-            font-weight: 500;
-        }
-        
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-        }
-        
-        .modal.show {
             display: flex;
             align-items: center;
             justify-content: center;
         }
         
-        .modal-content {
-            background: white;
-            border-radius: 8px;
-            padding: 30px;
-            max-width: 480px;
-            width: 90%;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
-        
-        .modal-header {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 20px;
-        }
-        
-        .modal-info {
-            background: #f8f9fa;
-            padding: 16px;
-            border-radius: 6px;
-            margin-bottom: 24px;
-            border-left: 3px solid #495057;
-        }
-        
-        .modal-info p {
-            margin: 6px 0;
-            color: #495057;
-            font-size: 0.9rem;
-        }
-        
-        .modal-info strong {
-            color: #1a1a1a;
-            font-weight: 600;
-        }
-        
-        .form-group {
-            margin-bottom: 18px;
-        }
-        
-        label {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 6px;
-            color: #495057;
-            font-size: 0.9rem;
-        }
-        
-        input {
+        .container {
+            max-width: 600px;
             width: 100%;
-            padding: 10px 12px;
-            border: 1.5px solid #ced4da;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            font-family: 'Inter', sans-serif;
-            transition: border-color 0.2s;
         }
         
-        input:focus {
-            outline: none;
-            border-color: #495057;
-        }
-        
-        .button-group {
-            display: flex;
-            gap: 12px;
-            margin-top: 24px;
-        }
-        
-        button {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            font-family: 'Inter', sans-serif;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .btn-confirm {
-            background: #28a745;
-            color: white;
-        }
-        
-        .btn-confirm:hover {
-            background: #218838;
-        }
-        
-        .btn-cancel {
-            background: #e9ecef;
-            color: #495057;
-        }
-        
-        .btn-cancel:hover {
-            background: #dee2e6;
-        }
-        
-        #delete-btn {
-            background: #dc3545;
-            color: white;
-        }
-        
-        #delete-btn:hover {
-            background: #c82333;
-        }
-        
-        .loading {
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 50px 40px;
             text-align: center;
-            padding: 40px;
-            color: #6c757d;
-            font-size: 1rem;
         }
         
-        .error {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 14px;
-            border-radius: 6px;
+        .icon {
+            font-size: 4rem;
             margin-bottom: 20px;
-            text-align: center;
-            border: 1px solid #f5c6cb;
         }
         
-        @media (max-width: 768px) {
-            h1 { font-size: 1.5rem; }
-            .subtitle { font-size: 0.85rem; }
-            .slots-grid {
-                grid-template-columns: 1fr;
-            }
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+        
+        .message {
+            font-size: 1.1rem;
+            color: #6c757d;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .contact-box {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .contact-box p {
+            font-size: 0.95rem;
+            color: #495057;
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #45a049;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Rendez-vous Livret Semestre 1 - CPB</h1>
-            <p class="subtitle">Février 2026</p>
-        </header>
-        
-        <div id="error-message" class="error" style="display: none;"></div>
-        <div id="content"></div>
-    </div>
-    
-    <!-- Modal -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">Réserver ce créneau</div>
-            <div class="modal-info">
-                <p><strong>Jour :</strong> <span id="modal-day"></span></p>
-                <p><strong>Date :</strong> <span id="modal-date"></span></p>
-                <p><strong>Heure :</strong> <span id="modal-time"></span></p>
-                <p><strong>Lieu :</strong> <span id="modal-location"></span></p>
+        <div class="card">
+            <div class="icon">🔒</div>
+            <h1>Inscriptions closes</h1>
+            <p class="message">
+                Les inscriptions pour les rendez-vous de remise des livrets semestriels sont désormais clôturées.
+            </p>
+            
+            <div class="contact-box">
+                <p>Pour toute question ou demande particulière, vous pouvez contacter la maîtresse via :</p>
+                <a href="https://www.toutemonannee.com" target="_blank" class="btn">
+                    📚 Accéder à TouteMonAnnee.com
+                </a>
             </div>
-            <form id="reservation-form">
-                <div class="form-group">
-                    <label for="child-name">Nom de l'enfant *</label>
-                    <input type="text" id="child-name" required placeholder="Ex: Lucas Dupont">
-                </div>
-                <div class="form-group">
-                    <label for="parent-name">Nom du parent (optionnel)</label>
-                    <input type="text" id="parent-name" placeholder="Ex: Marie Dupont">
-                </div>
-                <div class="button-group" id="button-group">
-                    <button type="button" class="btn-cancel" onclick="closeModal()">Fermer</button>
-                    <button type="button" id="delete-btn" class="btn-cancel" onclick="deleteReservation()" style="display:none;">Annuler réservation</button>
-                    <button type="submit" class="btn-confirm">Confirmer</button>
-                </div>
-            </form>
         </div>
     </div>
-    
-    <script>
-        let currentSlotId = null;
-        let slots = [];
-        
-        // Load slots
-        async function loadSlots() {
-            try {
-                const response = await fetch('/api/slots');
-                if (!response.ok) throw new Error('Erreur de chargement');
-                slots = await response.json();
-                renderSlots();
-            } catch (error) {
-                showError('Impossible de charger les créneaux. Rechargez la page.');
-            }
-        }
-        
-        // Render slots
-        function renderSlots() {
-            const content = document.getElementById('content');
-            
-            // Group by day
-            const byDay = {};
-            slots.forEach(slot => {
-                if (!byDay[slot.day]) byDay[slot.day] = [];
-                byDay[slot.day].push(slot);
-            });
-            
-            let html = '';
-            for (const [day, daySlots] of Object.entries(byDay)) {
-                html += `
-                    <div class="day-section">
-                        <div class="day-title">${day} ${daySlots[0].date}</div>
-                        <div class="slots-grid">
-                `;
-                
-                daySlots.forEach(slot => {
-                    const isReserved = slot.reserved;
-                    html += `
-                        <div class="slot ${isReserved ? 'reserved' : ''}" 
-                             onclick="openModal(${slot.id})">
-                            <div class="slot-time">${slot.heure}</div>
-                            <div class="slot-location">${slot.lieu}</div>
-                            <div class="slot-status ${isReserved ? 'reserved' : 'available'}">
-                                ${isReserved ? 'Réservé' : 'Disponible'}
-                            </div>
-                            ${isReserved ? `<div class="reserved-name">${slot.nom}</div>` : ''}
-                        </div>
-                    `;
-                });
-                
-                html += '</div></div>';
-            }
-            
-            content.innerHTML = html;
-        }
-        
-        // Open modal
-        function openModal(slotId) {
-            currentSlotId = slotId;
-            const slot = slots.find(s => s.id === slotId);
-            
-            document.getElementById('modal-day').textContent = slot.day;
-            document.getElementById('modal-date').textContent = slot.date;
-            document.getElementById('modal-time').textContent = slot.heure;
-            document.getElementById('modal-location').textContent = slot.lieu;
-            
-            // Pre-fill if reserved
-            const deleteBtn = document.getElementById('delete-btn');
-            if (slot.reserved) {
-                const nameParts = slot.nom.split('(');
-                const childName = nameParts[0].trim();
-                const parentName = nameParts[1] ? nameParts[1].replace(')', '').trim() : '';
-                
-                document.getElementById('child-name').value = childName;
-                document.getElementById('parent-name').value = parentName;
-                document.querySelector('.modal-header').textContent = 'Modifier ce créneau';
-                deleteBtn.style.display = 'block';
-            } else {
-                document.getElementById('child-name').value = '';
-                document.getElementById('parent-name').value = '';
-                document.querySelector('.modal-header').textContent = 'Réserver ce créneau';
-                deleteBtn.style.display = 'none';
-            }
-            
-            document.getElementById('modal').classList.add('show');
-        }
-        
-        // Close modal
-        function closeModal() {
-            document.getElementById('modal').classList.remove('show');
-            currentSlotId = null;
-        }
-        
-        // Delete reservation
-        async function deleteReservation() {
-            const pin = prompt('Code PIN de réservation (4 chiffres) :');
-            
-            if (!pin) return;
-            
-            if (!/^\d{4}$/.test(pin)) {
-                alert('Le code PIN doit être composé de 4 chiffres');
-                return;
-            }
-            
-            try {
-                const response = await fetch('/api/cancel', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        slotId: currentSlotId,
-                        pin: pin
-                    })
-                });
-                
-                if (!response.ok) {
-                    const error = await response.json();
-                    throw new Error(error.error || 'Erreur d\'annulation');
-                }
-                
-                alert('✓ Réservation annulée avec succès');
-                closeModal();
-                await loadSlots();
-            } catch (error) {
-                showError(error.message);
-            }
-        }
-        
-        // Handle form submit
-        document.getElementById('reservation-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const childName = document.getElementById('child-name').value.trim();
-            const parentName = document.getElementById('parent-name').value.trim();
-            
-            if (!childName) {
-                alert('Le nom de l\'enfant est requis');
-                return;
-            }
-            
-            const fullName = parentName ? `${childName} (${parentName})` : childName;
-            
-            try {
-                const response = await fetch('/api/reserve', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        slotId: currentSlotId,
-                        name: fullName
-                    })
-                });
-                
-                if (!response.ok) {
-                    const error = await response.json();
-                    throw new Error(error.error || 'Erreur de réservation');
-                }
-                
-                const result = await response.json();
-                const slot = slots.find(s => s.id === currentSlotId);
-                const isModification = slot && slot.reserved;
-                
-                // Show success message with PIN
-                if (result.pin && !isModification) {
-                    alert(
-                        '✓ Réservation confirmée !\n\n' +
-                        'Créneau : ' + slot.day + ' ' + slot.date + ' à ' + slot.heure + '\n' +
-                        'Enfant : ' + childName + '\n\n' +
-                        '🔑 Votre code PIN : ' + result.pin + '\n\n' +
-                        'Conservez ce code pour modifier ou annuler votre réservation.'
-                    );
-                } else if (isModification) {
-                    alert('✓ Réservation modifiée avec succès');
-                }
-                
-                closeModal();
-                await loadSlots();
-            } catch (error) {
-                showError(error.message);
-            }
-        });
-        
-        // Show error
-        function showError(message) {
-            const errorDiv = document.getElementById('error-message');
-            errorDiv.textContent = message;
-            errorDiv.style.display = 'block';
-            setTimeout(() => {
-                errorDiv.style.display = 'none';
-            }, 5000);
-        }
-        
-        // Close modal on outside click
-        document.getElementById('modal').addEventListener('click', (e) => {
-            if (e.target.id === 'modal') closeModal();
-        });
-        
-        // Initial load
-        loadSlots();
-        
-        // Refresh every 30 seconds
-        setInterval(loadSlots, 30000);
-    </script>
 </body>
 </html>
